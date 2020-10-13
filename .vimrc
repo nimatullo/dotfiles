@@ -22,13 +22,6 @@ Plugin 'chriskempson/base16-vim'
 " Ctrl-p
 Plugin 'kien/ctrlp.vim'
 
-" Elixir syntax highlighting
-Plugin 'elixir-lang/vim-elixir'
-
-" Vimwiki
-Plugin 'vimwiki/vimwiki'
-
-
 " Keep Plugin commands between vundle#begin/end.
 
 " All of your Plugins must be added before the following line
@@ -47,6 +40,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Invoke Ctrl-p with c-p
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" Remap Esc key
+inoremap jk <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -106,9 +102,6 @@ set ffs=unix,dos,mac
 let base16colorspace=256
 colorscheme gruvbox
 set background=dark
-
-
-set cursorline	" highlight current active line
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " File Types
