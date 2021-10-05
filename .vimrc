@@ -16,7 +16,7 @@ highlight colorcolumn ctermbg=234
 " Italic comments
 highlight Comment cterm=italic gui=italic
 "Leader key
-let mapleader = ","
+let mapleader = " "
 " Theme toggle function
 let g:LightTheme = 0
 function! ToggleTheme()  
@@ -46,6 +46,9 @@ nnoremap <leader>d :tabp<CR>
 nnoremap <leader>a :tabn<CR>
 " Escape key
 inoremap jk <Esc>
+" Fast saving
+nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
 " Auto-close brackets
 inoremap ( ()<left>
 inoremap [ []<left>
