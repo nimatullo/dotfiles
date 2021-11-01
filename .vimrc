@@ -2,7 +2,7 @@
 " Syntax
 syntax on
 " Default colors
-colorscheme wombat256grf 
+colorscheme gruvbox 
 set background=dark
 highlight Normal ctermbg=black 
 highlight EndOfBuffer ctermbg=black
