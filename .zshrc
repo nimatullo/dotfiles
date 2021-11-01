@@ -27,8 +27,7 @@ precmd() {
 setopt prompt_subst
 
 # Config for the prompt. PS1 synonym.
-PROMPT='%F{red}%2/ ${vcs_info_msg_0_}> %f'
-export PROMPT;
+export PROMPT=$'[0;31m%n[0m in [0m[0;33m%~[0m[1;31m\n >>> [0m'
 export CLICOLOR=1
 export LSCOLOR=ExFxBxDxCxegedabagacad
 
