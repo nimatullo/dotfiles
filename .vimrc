@@ -40,7 +40,7 @@ map <F8> :call ToggleTheme()<CR>
 " BEHAVIOUR
 " Space tab settings
 filetype indent plugin on
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=1 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Change tab bindings (alt+j/alt+k)
 nnoremap <leader>d :tabp<CR>
 nnoremap <leader>a :tabn<CR>
@@ -101,6 +101,10 @@ function! ToggleNetrw()
     endif
 endfunction
 map <leader>t :call ToggleNetrw()<CR>
+
+" CTRL-P
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+noremap <Leader>t <Ctrl-t><CR>
 
 " NOTES
 " Find string in files

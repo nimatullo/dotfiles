@@ -1,43 +1,27 @@
-#!/usr/bin/env zsh
-#  _____ _ _     ____                       _     
-# / ____(_) |   |  _ \                     | |    
-#| |  __ _| |_  | |_) |_ __ __ _ _ __   ___| |__  
-#| | |_ | | __| |  _ <| '__/ _` | '_ \ / __| '_ \ 
-#| |__| | | |_  | |_) | | | (_| | | | | (__| | | |
-# \_____|_|\__| |____/|_|  \__,_|_| |_|\___|_| |_|
+export ZSH="/Users/sherzodnimatullo/.oh-my-zsh"
+ZSH_THEME="common"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-# This line obtains information from the vcs.
-zstyle ':vcs_info:git*' formats "- (%b) "
-precmd() {
-    vcs_info
-}
-# _____                           _   
-#|  __ \                         | |  
-#| |__) | __ ___  _ __ ___  _ __ | |_ 
-#|  ___/ '__/ _ \| '_ ` _ \| '_ \| __|
-#| |   | | | (_) | | | | | | |_) | |_ 
-#|_|   |_|  \___/|_| |_| |_| .__/ \__|
-#                          | |        
-#                          |_|        
+plugins=(git colored-man-pages pip macos zsh-autosuggestions zsh-syntax-highlighting)
 
-# Enable substitution in the prompt.
-setopt prompt_subst
-# Config for the prompt. PS1 synonym.
-export PROMPT=$' 🐡 [0;31m%n[0m in [0m[0;33m%~[0m[1;31m\n >>> [0m'
-export CLICOLOR=1
-export LSCOLOR=ExFxBxDxCxegedabagacad
-#          _ _                     
-#    /\   | (_)                    
-#   /  \  | |_  __ _ ___  ___  ___ 
-#  / /\ \ | | |/ _` / __|/ _ \/ __|
-# / ____ \| | | (_| \__ \  __/\__ \
-#/_/    \_\_|_|\__,_|___/\___||___/
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
 
 alias ..="cd .."
 alias gaa="git add ."
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
+alias gtdl="cd ~/Downloads"
+alias gtdt="cd ~/Desktop"
 alias v="nvim"
-alias c="cd ~/code"
+alias gtc="cd ~/code"
+alias gtg="cd ~/code/git"
+alias gtp="cd ~/code/projects"
+alias puf="cd ~/code/puffer"
+alias rstart="~/code/projects/reminderse/scripts/start.sh"
+alias gcm="git commit --message"
