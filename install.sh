@@ -20,4 +20,6 @@ symlink_dotfiles .gitignore
 # tell git where the global gitignore file is
 git config --global core.excludesfile ~/.gitignore
 
+# 
+
 echo "👍 Done!"

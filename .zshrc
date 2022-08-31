@@ -14,4 +14,4 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
-source $HOME/code/git/dotfiles/.aliases
+source ~/.aliases
