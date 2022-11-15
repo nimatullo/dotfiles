@@ -15,3 +15,6 @@ source $ZSH/oh-my-zsh.sh
  fi
 
 source ~/.aliases
+source ~/.exports
+
+export HOMEBREW_NO_AUTO_UPDATE=1 # Prevent brew from autoupdating on every install

@@ -11,7 +11,6 @@ abs_path() {
 
 echo "🔗 Creating symlinks..."
 
-symlink_dotfiles .hyper.js
 symlink_dotfiles .zshrc
 symlink_dotfiles .vimrc
 symlink_dotfiles .aliases

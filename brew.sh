@@ -14,7 +14,7 @@ brew update
 # Dev
 brew install node
 brew install visual-studio-code
-brew install hyper
+brew install iterm2
 brew install postman
 
 # Communication
@@ -24,7 +24,9 @@ brew install discord
 brew install bitwarden
 brew install notion
 brew install fantastical
-brew install hazel
+brew install rocket
+brew install orion
+brew install ticktick
 
 # Fonts
 brew install font-sf-mono
