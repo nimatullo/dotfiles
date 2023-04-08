@@ -15,5 +15,8 @@ alias puf="cd ~/code/puffer"
 alias rstart="~/code/projects/reminderse/scripts/start.sh"
 
 # Remaps
-alias ls="colorls"
+#alias ls="colorls"
 alias v="nvim"
+
+# ETC
+alias ip="ipconfig getifaddr en0 | pbcopy"

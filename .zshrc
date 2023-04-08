@@ -11,10 +11,11 @@ source $ZSH/oh-my-zsh.sh
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='nvim'
+   export EDITOR='v'
  fi
 
 source ~/.aliases
 source ~/.exports
 
 export HOMEBREW_NO_AUTO_UPDATE=1 # Prevent brew from autoupdating on every install
+export PATH="/usr/local/sbin:$PATH"
