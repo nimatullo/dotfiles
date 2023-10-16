@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# This script scans a directory for JavaScript and TypeScript files,
+# checks for 'console.log' statements, and provides options to exclude
+# files from future scans or remove the statements. Excluded files
+# are tracked in 'excluded_files.txt'.
+
+directory=$1
+script_dir=$(dirname "$(realpath "$0")")
+excluded_list_file="$script_dir/excluded_files.txt"
+
+if [ -z "$directory" ]; then
+	echo "Please provide a directory to scan."
+	exit 1
+fi
+
+if [ ! -d "$directory" ]; then
+	echo "The specified directory does not exist."
+	exit 1
+fi
+
+echo "🕵️‍♂️  Scanning directory: $directory"
+
+# Create excluded list file if it doesn't exist
+touch "$excluded_list_file"
+
+# Read excluded file list into an array
+excluded_files=()
+while IFS= read -r line; do
+	excluded_files+=("$line")
+done <"$excluded_list_file"
+
+# Recursively search for files with .js, .ts, and .jsx extensions and check for console.log
+grep_output=$(grep -rnw "$directory" -e "console\.log")
+
+no_log_found=true
+
+# Process grep output line by line
+echo "$grep_output" | while read -r line; do
+	# Extract the file path from the grep output
+	file_path=$(echo "$line" | cut -d ':' -f 1)
+
+	# Get the absolute path of the file
+	abs_file_path=$(realpath "$file_path")
+
+	# Check if the file is in the excluded list
+	if [[ " ${excluded_files[@]} " =~ " ${abs_file_path} " ]]; then
+		continue
+	else
+		no_log_found=false
+		echo "$line"
+	fi
+
+	# Prompt user to exclude the file
+	read -rp "🙅‍♂️ Do you want to exclude this file from future scans? [y/n]: " choice </dev/tty
+	case "$choice" in
+	[Yy]*)
+		# Add the file path to the excluded list file
+		echo "$abs_file_path" >>"$excluded_list_file"
+		echo "File excluded."
+		;;
+	[Nn]*)
+		# If the file is not excluded, prompt user to remove the console.log
+		read -rp "🗑 Do you want to remove this console.log? [y/n]: " choice </dev/tty
+		case "$choice" in
+		[Yy]*)
+			# Remove the console.log
+			sed -i '' '/console\.log/d' "$file_path"
+			echo "console.log removed."
+			;;
+		[Nn]*)
+			echo "console.log not removed."
+			;;
+		*)
+			echo "Invalid choice. console.log not removed."
+			;;
+		esac
+		;;
+	*)
+		echo "Invalid choice. File not excluded."
+		;;
+	esac
+
+done
+
+if [ $no_log_found ]; then
+	echo "🎉 No console.log found!"
+fi

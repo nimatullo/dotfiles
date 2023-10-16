@@ -1,0 +1,25 @@
+#!/bin/bash
+# Starts development versions of both Squad frontend and backend in
+# split tmux session. Also opens to localhost:3000 on default browser
+
+which -s tmux
+if [[ $? != 0 ]]; then
+	echo "tmux is not installed. run 'brew install tmux'"
+fi
+
+DEV_URL="http://localhost:3000"
+API_PATH="~/code/squadbk-api"
+FRONTEND_PATH="~/code/squadbk"
+
+# Initialize tmux sessions
+tmux kill-server
+tmux new-session -d zsh
+tmux new-session -d zsh
+tmux split-window -h zsh
+
+# Start frontend and backend
+tmux send -t 0:0.0 "sleep 10 ; open $DEV_URL ; exit" C-m
+tmux send -t 1:0.0 "yarn --cwd $API_PATH dev" C-m
+tmux send -t 1:0.1 "cd $FRONTEND_PATH ; ./bin/dev.sh" C-m
+
+tmux -2 attach-session -d
